@@ -6,8 +6,7 @@ import React, { Component } from 'react'
         this.state={
             name:'',
             email : '',
-            gen : 0
-
+            contact : ''
         }
     }
 
@@ -19,14 +18,16 @@ import React, { Component } from 'react'
 
     handleSubmit=(e)=>{
         e.preventDefault()
-        if(this.state.name == ''&&this.state.email == ''&& this.state.gen == ''){
+        if(this.state.name == ''&&this.state.email == ''&& this.state.contact == ''){
             return
         }
+
         this.props.adduser(this.state)
+
         this.setState({
             name:'',
             email:'',
-            gen:'',
+            contact:'',
         })
         
         // console.log(this.state)
@@ -48,8 +49,8 @@ import React, { Component } from 'react'
                 <input type="text" className='form-control' name='email' onChange={this.handleChange} value={this.state.email}/>
             </div>
             <div className='form-group my-3'>
-                <label htmlFor="">Gen</label>
-                <input type="number" className='form-control' name='gen' onChange={this.handleChange} value={this.state.gen}/>
+                <label htmlFor="">Contact</label>
+                <input type="text" className='form-control' name='contact' onChange={this.handleChange} value={this.state.contact}/>
             </div>
             <div className='form-group my-3'>
                 <input type="submit" className='form-control btn btn-primary' value={'submit'}/>

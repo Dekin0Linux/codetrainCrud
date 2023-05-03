@@ -4,6 +4,8 @@ import UserCard from './UserCard'
 function Users(props) {
 
     return (
+        <>
+        <h2 className='text-center'>Our Registed Users</h2>
         <div className='d-flex flex-wrap'>
             {
                 props.usersData.map((user,index)=>(
@@ -11,6 +13,7 @@ function Users(props) {
                 ))
             }
         </div>
+        </>
     )
 }
 

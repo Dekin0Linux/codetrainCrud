@@ -9,10 +9,9 @@ class App extends Component{
     super(props)
     this.state={
       users:[
-        {id:1,name:"Dekin Faisal",email:"dekin@gmail.com",gen:10},
-        {id:2,name:"Alex Nola",email:"alex@gmail.com",gen:4},
-        {id:3,name:"Jane larry",email:"jane@gmail.com",gen:30},
-        {id:4,name:"Randy Brad",email:"randy@gmail.com",gen:25},
+        {id:1,name:"Alex Nola",email:"alex@gmail.com",contact:'123456789'},
+        
+        {id:4,name:"John Doe",email:"john@gmail.com",contact:25},
       ]
     }
   }

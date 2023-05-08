@@ -7,7 +7,7 @@ function Users(props) {
         <div className='d-flex flex-wrap'>
             {
                 props.usersData.map((user,index)=>(
-                    <UserCard user={user} key={index} deleteUser={props.deleteUser} index={index}/>
+                    <UserCard user={user} key={index} deleteUser={props.deleteUser} index={index} editData={props.editData}/>
                 ))
             }
         </div>

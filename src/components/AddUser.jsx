@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import * as uuid from 'uuid'
 
  class AddUser extends Component {
     constructor(props){
         super(props)
         this.state={
+            id : '',
             name:'',
             email : '',
             gen : 0
@@ -19,11 +21,12 @@ import React, { Component } from 'react'
 
     handleSubmit=(e)=>{
         e.preventDefault()
-        if(this.state.name == ''&&this.state.email == ''&& this.state.gen == ''){
+        if(this.state.name == '' && this.state.email == ''&& this.state.gen == ''){
             return
         }
         this.props.adduser(this.state)
         this.setState({
+            id : uuid,
             name:'',
             email:'',
             gen:'',

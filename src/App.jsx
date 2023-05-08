@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
-import UserCard from './components/UserCard'
+// import UserCard from './components/UserCard'
 import AddUser from './components/AddUser'
 import Users from './components/Users'
+// import EditUser from './components/EditUser'
 
 
 class App extends Component{
@@ -28,8 +29,16 @@ class App extends Component{
     this.setState({
       users: deleted
     })
+  }
+
+  editUser = (id,editdData )=>{
+    this.setState({
+      users : this.state.users.map((user) => user.id === id ? editdData : user)
+    })
 
   }
+
+
 
   render(){
     return(
@@ -39,7 +48,7 @@ class App extends Component{
           <AddUser adduser={this.addUser}/>
         </div>
         <div className='col-md-9'>
-          <Users usersData={this.state.users} deleteUser={this.deleteUser} />
+          <Users usersData={this.state.users} deleteUser={this.deleteUser} editData={this.editUser}/>
         </div>
       </div>
       

@@ -30,6 +30,13 @@ class App extends Component{
 
   }
 
+  editUser = (id,editdData )=>{
+    this.setState({
+      users : this.state.users.map((user) => user.id === id ? editdData : user)
+    })
+  }
+
+
   render(){
     return(
       <>
@@ -38,7 +45,7 @@ class App extends Component{
           <AddUser adduser={this.addUser}/>
         </div>
         <div className='col-md-9'>
-          <Users usersData={this.state.users} deleteUser={this.deleteUser} />
+          <Users usersData={this.state.users} deleteUser={this.deleteUser} editData={this.editUser}/>
         </div>
       </div>
       

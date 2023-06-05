@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import * as uuid from 'uuid'
+import { editUser,closeModal } from '../store/userReducer'
+import { connect } from 'react-redux'
 
  class EditUser extends Component {
 
@@ -26,18 +27,16 @@ import * as uuid from 'uuid'
             return
         }
 
-        this.props.editData(this.state.id, this.state)
+        this.props.editData({id:this.state.id, editData:this.state})
         // console.log(this.state)
 
         this.setState({
-            id : uuid,
             name:'',
             email:'',
             gen:'',
         })
         this.props.closeModal()
-        
-        // console.log(this.state)
+
     }
 
 
@@ -68,4 +67,13 @@ import * as uuid from 'uuid'
   }
 }
 
-export default EditUser
+const mapDispatch=(dispatch)=>{
+    return {
+        editData:(id, data)=>{
+            dispatch(editUser(id,data))
+        },
+    }
+}
+
+
+export default connect(null,mapDispatch) (EditUser)

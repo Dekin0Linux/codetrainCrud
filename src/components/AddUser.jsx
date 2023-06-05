@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import * as uuid from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
+import { addUser } from '../store/userReducer'
+import { connect } from 'react-redux'
 
  class AddUser extends Component {
     constructor(props){
@@ -9,7 +11,6 @@ import * as uuid from 'uuid'
             name:'',
             email : '',
             gen : 0
-
         }
     }
 
@@ -24,15 +25,15 @@ import * as uuid from 'uuid'
         if(this.state.name == '' && this.state.email == ''&& this.state.gen == ''){
             return
         }
+        // this.props.adduser(this.state)
         this.props.adduser(this.state)
         this.setState({
-            id : uuid,
+            id : uuidv4(),
             name:'',
             email:'',
             gen:'',
         })
         
-        // console.log(this.state)
     }
 
 
@@ -63,4 +64,10 @@ import * as uuid from 'uuid'
   }
 }
 
-export default AddUser
+const mapDispatch=(dispatch)=>{
+    return{
+        adduser:user=>dispatch(addUser(user))
+    }
+}
+
+export default connect(null,mapDispatch)(AddUser)

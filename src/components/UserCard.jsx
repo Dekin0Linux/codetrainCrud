@@ -1,10 +1,9 @@
 import React,{useState} from 'react'
 import EditUser from './EditUser'
-
-
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-
+import { deleteUser } from '../store/userReducer';
+import { connect } from 'react-redux';
 
 function UserCard({user,deleteUser,index,editData}) {
 
@@ -49,4 +48,12 @@ function UserCard({user,deleteUser,index,editData}) {
   )
 }
 
-export default UserCard
+const mapDispatch=(dispatch)=>{
+  return {
+    deleteUser: (id) => dispatch(deleteUser(id))
+  }
+}
+
+
+
+export default connect(null,mapDispatch) (UserCard)

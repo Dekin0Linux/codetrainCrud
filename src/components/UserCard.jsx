@@ -1,6 +1,8 @@
 
 import React,{useState} from 'react'
 import EditUser from './EditUser'
+import { deleteUser } from '../store/contactReducer';
+import { connect } from 'react-redux';
 
 
 import Button from 'react-bootstrap/Button';
@@ -23,12 +25,6 @@ function UserCard({user,deleteUser,index,editData}) {
         </Modal.Header>
         <Modal.Body><EditUser editInfo={user} editData={editData} closeModal={handleClose}/></Modal.Body>
         <Modal.Footer>
-          {/* <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button> */}
         </Modal.Footer>
       </Modal>
 
@@ -52,4 +48,12 @@ function UserCard({user,deleteUser,index,editData}) {
   )
 }
 
-export default UserCard
+const mapDispatch=(dispatch)=>{
+  return {
+    deleteUser: (id)=>dispatch(deleteUser(id))
+  }
+}
+
+
+
+export default connect(null,mapDispatch)(UserCard)

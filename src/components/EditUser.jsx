@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import * as uuid from 'uuid'
+import { editUser } from '../store/contactReducer'
+import { connect } from 'react-redux'
 
  class EditUser extends Component {
 
@@ -10,7 +11,6 @@ import * as uuid from 'uuid'
             name: props.editInfo.name,
             email : props.editInfo.email,
             contact : props.editInfo.contact
-
         }
     }
 
@@ -27,10 +27,8 @@ import * as uuid from 'uuid'
         }
 
         this.props.editData(this.state.id, this.state)
-        // console.log(this.state)
 
         this.setState({
-            id : uuid,
             name:'',
             email:'',
             contact:'',
@@ -48,7 +46,7 @@ import * as uuid from 'uuid'
         <h3>Edit user info</h3>
         <form action="" onSubmit={this.handleSubmit}>
             <div className='form-group my-3'>
-                <label htmlFor="">Name</label>
+                <label htmlFor="">Name {this.state.id}</label>
                 <input type="text" className='form-control' name='name' onChange={this.handleChange} value={this.state.name}/>
             </div>
             <div className='form-group my-3'>
@@ -68,4 +66,10 @@ import * as uuid from 'uuid'
   }
 }
 
-export default EditUser
+const mapDispatchToProps = (dispatch) => {
+    return {
+        editData: (id, data) => dispatch(editUser({id,data})),
+    }
+}
+
+export default connect(null,mapDispatchToProps) (EditUser)

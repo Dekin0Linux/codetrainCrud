@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { addContact } from '../store/contactReducer'
+import { connect } from 'react-redux'
 
  class AddUser extends Component {
     constructor(props){
         super(props)
         this.state={
+            id:'',
             name:'',
             email : '',
             contact : ''
@@ -25,6 +28,7 @@ import React, { Component } from 'react'
         this.props.adduser(this.state)
 
         this.setState({
+            id: this.props.contacts.length+1,
             name:'',
             email:'',
             contact:'',
@@ -61,4 +65,17 @@ import React, { Component } from 'react'
   }
 }
 
-export default AddUser
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        adduser: user => dispatch(addContact(user))
+    }
+}
+
+const mapState=(state)=>{
+    return {
+        contacts: state.contact.user
+    }
+}
+
+export default connect(mapState,mapDispatchToProps) (AddUser)
